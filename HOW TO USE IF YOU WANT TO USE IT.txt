@@ -1,0 +1,13 @@
+INSTALL NODE JS
+
+OPEN TO VS CODE OR TERMINAL OR CMD
+
+run:
+
+npm start
+
+then go to your unity code: 
+
+AT serverLinkUrl edit put this link = http://localhost:5600
+
+and run the game :>>
