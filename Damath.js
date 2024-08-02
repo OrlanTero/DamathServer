@@ -29,8 +29,6 @@ export function ParseClientSentData(socket, data) {
 
     RemoveDisconectedSockets();
 
-    console.log(message)
-
     switch(message.message_type) {
         case MESSAGE_TYPES.CLIENT_SEND_MATCH_REQUEST:
             TryMatch(new MatchRequest(socket, JSON.parse(message.message)));
