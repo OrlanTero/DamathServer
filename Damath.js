@@ -29,6 +29,8 @@ export function ParseClientSentData(socket, data) {
 
     RemoveDisconectedSockets();
 
+    console.log(message)
+
     switch(message.message_type) {
         case MESSAGE_TYPES.CLIENT_SEND_MATCH_REQUEST:
             TryMatch(new MatchRequest(socket, JSON.parse(message.message)));
@@ -118,7 +120,7 @@ class MessageRequest {
     }
 
     send(socket) {
-        socket.emit("send_message", JSON.stringify({
+        socket.send(JSON.stringify({
             uuid: this.uuid,
             message_type: this.message_type,
             message: JSON.stringify(this.message)
@@ -377,6 +379,6 @@ function GoMatch(request1, request2) {
     }));
 
     // console.log(match);
-    white.socket.emit("send_message", JSON.stringify(messageRequest));
-    black.socket.emit("send_message", JSON.stringify(messageRequest));
+    white.socket.send( JSON.stringify(messageRequest));
+    black.socket.send( JSON.stringify(messageRequest));
 }
