@@ -10,6 +10,7 @@ const wss = new WebSocketServer({ port: 8080 },()=>{
 })
 
 wss.on('connection', function connection(ws) {
+  console.log("CONNECTED!");
    ws.on('message', (data) => {
       console.log('data received \n %o',data)
       ws.send(data);
