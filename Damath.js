@@ -51,7 +51,7 @@ export function ParseClientSentData(socket, data) {
 }
 
 export function RemoveDisconectedSockets() {
-    MATCH_REQUESTS = MATCH_REQUESTS.filter(match => match.socket && match.socket.connected);
+    MATCH_REQUESTS = MATCH_REQUESTS.filter(match => match.socket && match.socket.OPEN);
 
     for (const match of MATCH_PLAYING) {
         if (!match.players.player1.socket || !match.players.player2.socket) {
@@ -62,16 +62,16 @@ export function RemoveDisconectedSockets() {
             }
         }
 
-        if (!match.players.player1.socket.connected) {
+        if (!match.players.player1.socket.OPEN) {
             PlayerLeave(match, match.players.player1, match.players.player2);
         } 
         
-        if (!match.players.player1.socket.connected){
+        if (!match.players.player1.socket.OPEN){
             PlayerLeave(match, match.players.player2, match.players.player1);
         }
     }
 
-    MATCH_PLAYING = MATCH_PLAYING.filter(m => m.players.player1.socket && m.players.player2.socket).filter(match => match.players.player1.socket.connected && match.players.player2.socket.connected);
+    MATCH_PLAYING = MATCH_PLAYING.filter(m => m.players.player1.socket && m.players.player2.socket).filter(match => match.players.player1.socket.OPEN && match.players.player2.socket.OPEN);
 }
 
 function PlayerLeave(match, playerLeave, playerWin) {
